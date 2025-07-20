@@ -5,6 +5,11 @@ import bodyParser from 'body-parser';
 const app = express();
 app.use(bodyParser.json({ limit: '5mb' }));
 
+// ✅ 추가된 부분
+app.get('/', (req, res) => {
+  res.send('PDF 서버가 정상적으로 실행 중입니다.');
+});
+
 app.post('/generate', async (req, res) => {
   const { html } = req.body;
   if (!html) return res.status(400).send('No HTML provided');
